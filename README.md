@@ -18,7 +18,7 @@ Sync votes on Canny posts to a custom field on an Idea in a Jira Product Discove
 
 ### JIRA_SUBDOMAIN
 
-The subdomain used in Jira URLs, eg. acme = https://acme.atlassian.net/
+The subdomain used in Jira URLs, eg. https://acme.atlassian.net/ = acme. 
 
 ### JIRA_API_TOKEN
 
