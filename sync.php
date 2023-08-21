@@ -15,11 +15,6 @@ $canny_board_id = $_ENV['CANNY_BOARD_ID'];
 
 $client = new GuzzleHttp\Client();
 
-use GuzzleHttp\Client;
-
-$client = new Client();
-$jira_credentials = base64_encode($jira_email . ':' . $jira_api_token);
-
 $response = $client->post('https://canny.io/api/v1/posts/list', [
     'headers' => [
         'Content-Type' => 'application/json'
