@@ -1,11 +1,13 @@
 ## Canny Jira Product Discovery Votes Sync
 
-Sync votes on Canny posts to a custom field on an Idea in a Jira Product Discovery board.
+Sync votes on Canny posts to a custom field on an Idea in a Jira Product Discovery (JPD) board.
 
 ## Pre-Requisites
 
 - PHP
 - Composer
+
+When a Canny post has a related JPD idea, the idea must be linked in Canny. This can be done by using the 'Jira Issues' section of the post sidebar in the Canny admin.
 
 ## Installation
 
@@ -30,7 +32,7 @@ Use the email address you login to Jira with.
 
 ### JIRA_PROJECT_PREFIX
 
-The project prefix using for the Jira Product Discovery (JPD) board. For example, if the board URL is https://YOUR_COMPANY.atlassian.net/jira/polaris/projects/MTKA, then the prefix is MTKA.
+The project prefix using for the Jira Product Discovery board. For example, if the board URL is https://YOUR_COMPANY.atlassian.net/jira/polaris/projects/MTKA, then the prefix is MTKA.
 
 ### JIRA_CUSTOM_FIELD_ID
 
