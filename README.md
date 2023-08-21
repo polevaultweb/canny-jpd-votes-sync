@@ -63,3 +63,5 @@ Once all the environment variables are populated, to sync the votes between Cann
 
 ```php sync.php```
 
+Running this command syncs the votes and can be run any time. It isn't scheduled and needs to be run whenever you wanted updated data in JPD.
+
