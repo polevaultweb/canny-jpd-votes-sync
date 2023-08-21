@@ -16,6 +16,10 @@ Sync votes on Canny posts to a custom field on an Idea in a Jira Product Discove
 
 ## Environment Variables
 
+### JIRA_SUBDOMAIN
+
+The subdomain used in Jira URLs, eg. acme = https://acme.atlassian.net/
+
 ### JIRA_API_TOKEN
 
 Create an API token from your Atlassian account [here](https://id.atlassian.com/manage-profile/security/api-tokens).
@@ -26,7 +30,7 @@ Use the email address you login to Jira with.
 
 ### JIRA_PROJECT_PREFIX
 
-The project prefix using for the Jira Product Discovery (JPD) board. For example, if the board URL is https://wpengine.atlassian.net/jira/polaris/projects/MTKA, then the prefix is MTKA.
+The project prefix using for the Jira Product Discovery (JPD) board. For example, if the board URL is https://YOUR_COMPANY.atlassian.net/jira/polaris/projects/MTKA, then the prefix is MTKA.
 
 ### JIRA_CUSTOM_FIELD_ID
 
@@ -41,7 +45,7 @@ To find the internal Jira ID for the custom field you have created:
 
 ### CANNY_API_KEY
 
-Get the Canny API key from [here](https://feedback.wpengine.com/admin/settings/api) or ask a Canny admin for it.
+Get the Canny API key from https://[YOUR-COMPANY].canny.io/admin/settings/api or ask a Canny admin for it.
 
 ### CANNY_BOARD_ID
 

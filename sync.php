@@ -5,6 +5,7 @@ require_once 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$jira_subdomain = $_ENV['JIRA_SUBDOMAIN'];
 $jira_api_token = $_ENV['JIRA_API_TOKEN'];
 $jira_email = $_ENV['JIRA_EMAIL_ADDRESS'];
 $jira_custom_field_id = $_ENV['JIRA_CUSTOM_FIELD_ID'];
@@ -47,7 +48,7 @@ foreach ($data->posts as $post) {
             continue;
         }
 
-        $response = $client->request('PUT', 'https://wpengine.atlassian.net/rest/api/3/issue/' . $linkedIssue->key, [
+        $response = $client->request('PUT', 'https://' . $jira_subdomain . '.atlassian.net/rest/api/3/issue/' . $linkedIssue->key, [
             'auth' => [$jira_email, $jira_api_token],
             'headers' => [
                 'Content-Type' => 'application/json',
