@@ -16,6 +16,16 @@ $canny_board_id = $_ENV['CANNY_BOARD_ID'];
 
 $client = new GuzzleHttp\Client();
 
+// Validate Jira credentials before proceeding
+try {
+    $client->request('GET', 'https://' . $jira_subdomain . '.atlassian.net/rest/api/3/myself', [
+        'auth' => [$jira_email, $jira_api_token],
+    ]);
+} catch (GuzzleHttp\Exception\ClientException $e) {
+    echo 'Jira authentication failed. Regenerate your API token at https://id.atlassian.com/manage-profile/security/api-tokens' . PHP_EOL;
+    exit(1);
+}
+
 $response = $client->post('https://canny.io/api/v1/posts/list', [
     'headers' => [
         'Content-Type' => 'application/json'
@@ -48,15 +58,19 @@ foreach ($data->posts as $post) {
             continue;
         }
 
-        $response = $client->request('PUT', 'https://' . $jira_subdomain . '.atlassian.net/rest/api/3/issue/' . $linkedIssue->key, [
-            'auth' => [$jira_email, $jira_api_token],
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json'],
-            'json' => ['fields' => [$jira_custom_field_id => $votes]]
-        ]);
+        try {
+            $response = $client->request('PUT', 'https://' . $jira_subdomain . '.atlassian.net/rest/api/3/issue/' . $linkedIssue->key, [
+                'auth' => [$jira_email, $jira_api_token],
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'],
+                'json' => ['fields' => [$jira_custom_field_id => $votes]]
+            ]);
 
-        $total++;
+            $total++;
+        } catch (GuzzleHttp\Exception\ClientException $e) {
+            echo 'Skipping ' . $linkedIssue->key . ': ' . $e->getResponse()->getStatusCode() . ' - issue may not exist or no permission' . PHP_EOL;
+        }
     }
 
 }
