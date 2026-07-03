@@ -48,7 +48,8 @@ foreach ($data->posts as $post) {
 
     $votes = $post->score;
 
-	$posts[]= array( $votes, $post->url );
+	$admin_url = preg_replace('#(https://[^/]+)/#', '$1/admin/', $post->url, 1);
+	$posts[]= array( $votes, $admin_url, $post->url );
 
 	$total++;
 }
@@ -60,7 +61,7 @@ function mySort( $l, $r ) {
 usort( $posts, 'mySort' );
 
 foreach( $posts as $post ) {
-	echo $post[0] . " - " . $post[1] . "\n";
+	echo $post[0] . " - " . $post[1] . " | " . $post[2] . "\n";
 }
 
 echo  "\n" . $total . ' Canny posts without ideas';
